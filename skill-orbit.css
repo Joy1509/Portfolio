@@ -1,0 +1,463 @@
+/* ═══════════════════════════════════════════════════════════════
+   SKILL UNIVERSE ORBIT COMPONENT (CRIMSON COSMIC EDITION)
+   ═══════════════════════════════════════════════════════════════ */
+
+.orbit-universe-section {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0 60px 0;
+    overflow: hidden;
+}
+
+body.skill-zoom-active .orbit-universe-section {
+    overflow: visible;
+}
+
+.orbit-universe-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 2.2px;
+    color: var(--crimson-bright);
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    padding: 7px 18px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.orbit-universe-badge:hover {
+    background: rgba(220, 38, 38, 0.18);
+    box-shadow: 0 0 18px rgba(220, 38, 38, 0.45);
+}
+
+.orbiting-scene-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 560px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.orbiting-scene {
+    position: relative;
+    width: 900px;
+    height: 480px;
+    margin: 0 auto;
+    overflow: visible;
+    perspective: 1200px;
+    transform: scale(1.45);
+    transform-origin: center center;
+    transition: transform 0.1s linear;
+}
+
+/* Central Star Core */
+.orbit-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff5252 0%, #dc2626 50%, #7f1d1d 100%);
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.9), 0 0 75px rgba(220, 38, 38, 0.5);
+    z-index: 25;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+.orbit-center img {
+    width: 62%;
+    height: 62%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
+    animation: orbit-tap-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes orbit-tap-pulse {
+    0% {
+        transform: scale(0.92);
+        opacity: 0.85;
+    }
+
+    100% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+.orbit-center:hover {
+    transform: translate(-50%, -50%) scale(1.25);
+    box-shadow: 0 0 45px rgba(239, 68, 68, 1), 0 0 95px rgba(220, 38, 38, 0.8);
+}
+
+.orbit-center::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 100, 100, 0.55);
+    animation: orbit-spin-slow 14s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes orbit-spin-slow {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Orbital Elliptical Rings */
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(220, 38, 38, 0.32);
+    overflow: visible;
+    pointer-events: none;
+    box-shadow: inset 0 0 25px rgba(220, 38, 38, 0.06);
+}
+
+.orbit-ring-1 {
+    width: 350px;
+    height: 115px;
+    transform: translate(-50%, -50%) rotateX(22deg);
+}
+
+.orbit-ring-2 {
+    width: 575px;
+    height: 185px;
+    transform: translate(-50%, -50%) rotateX(22deg);
+}
+
+.orbit-ring-3 {
+    width: 800px;
+    height: 255px;
+    transform: translate(-50%, -50%) rotateX(22deg);
+}
+
+/* Planet Orbit Icons */
+.orbit-icon {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(18, 16, 22, 0.88);
+    border: 1px solid rgba(220, 38, 38, 0.38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #fff;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 10;
+    will-change: transform, left, top;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+body:not(.skill-zoom-active) .orbit-icon {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.orbit-icon span {
+    position: absolute;
+    bottom: calc(100% + 7px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 8, 12, 0.95);
+    border: 1px solid rgba(220, 38, 38, 0.45);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.8);
+    z-index: 60;
+}
+
+.orbit-icon:hover {
+    background: rgba(220, 38, 38, 0.25);
+    border-color: var(--crimson-bright);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.8);
+    transform: translate(-50%, -50%) scale(1.3) !important;
+    z-index: 50;
+}
+
+.orbit-icon:hover span {
+    opacity: 1;
+}
+
+/* Planet Focus State in Cinematic Zoom Mode */
+.orbit-icon.skill-planet-focus {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 4px var(--crimson-bright), 0 0 40px rgba(220, 38, 38, 1), 0 0 80px rgba(220, 38, 38, 0.6) !important;
+    transform: translate(-50%, -50%) scale(1.6) !important;
+    z-index: 100;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.orbit-icon.skill-planet-focus i {
+    font-size: 1.7rem !important;
+}
+
+/* Floating Cinematic Skill Label Card (Zoom Mode) */
+.skill-planet-label {
+    position: fixed;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0;
+    background: rgba(14, 12, 18, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    border-radius: 20px;
+    padding: 1.4rem 2.2rem;
+    min-width: 340px;
+    max-width: 520px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(220, 38, 38, 0.25);
+}
+
+.spl-category {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--crimson-bright);
+    font-family: var(--mono);
+    margin-bottom: 0.35rem;
+}
+
+.spl-name {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 0.7rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 35px rgba(220, 38, 38, 0.6);
+}
+
+.spl-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 440px;
+    margin: 0 auto 0.9rem;
+}
+
+.spl-counter {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.spl-counter .spl-cur {
+    color: var(--crimson-bright);
+    font-weight: 700;
+}
+
+/* Exit Exploration Button */
+.skill-planet-exit {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 999999;
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.5);
+    color: #ffffff;
+    padding: 0.65rem 1.4rem;
+    border-radius: 50px;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s ease;
+}
+
+.skill-planet-exit:hover {
+    background: var(--crimson);
+    border-color: var(--crimson-bright);
+    box-shadow: 0 0 25px rgba(220, 38, 38, 0.6);
+    transform: scale(1.04);
+}
+
+/* Navigation Hint */
+.skill-planet-hint {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-family: var(--mono);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    z-index: 999999;
+    pointer-events: none;
+}
+
+    /* Responsive Scaling Ladder */
+    @media (max-width: 1440px) {
+        .orbiting-scene {
+            transform: scale(1.25);
+        }
+
+        .orbiting-scene-container {
+            height: 510px;
+        }
+    }
+
+        @media (max-width: 1100px) {
+            .orbiting-scene {
+                transform: scale(1.02);
+            }
+
+            .orbiting-scene-container {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .orbiting-scene {
+                transform: scale(0.82);
+            }
+
+            .orbiting-scene-container {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .orbiting-scene {
+                transform: scale(0.60);
+            }
+
+            .orbiting-scene-container {
+                height: 310px;
+            }
+
+            .orbit-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.15rem;
+            }
+
+            .orbit-center {
+                width: 46px;
+                height: 46px;
+            }
+
+            .skill-planet-label {
+                min-width: 92vw;
+                padding: 1rem 1.4rem;
+                bottom: 8vh;
+            }
+
+            .spl-name {
+                font-size: 2.1rem;
+            }
+
+            .spl-desc {
+                font-size: 0.85rem;
+            }
+
+            .skill-planet-exit {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.74rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .orbiting-scene {
+                transform: scale(0.48);
+            }
+
+            .orbiting-scene-container {
+                height: 260px;
+            }
+
+            .orbit-universe-badge {
+                font-size: 0.65rem;
+                padding: 5px 12px;
+                letter-spacing: 0.8px;
+                text-align: center;
+            }
+
+            .orbit-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1.05rem;
+            }
+
+            .orbit-center {
+                width: 40px;
+                height: 40px;
+            }
+
+            .spl-name {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .orbiting-scene {
+                transform: scale(0.40);
+            }
+
+            .orbiting-scene-container {
+                height: 220px;
+            }
+
+            .orbit-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 0.92rem;
+            }
+
+            .orbit-center {
+                width: 34px;
+                height: 34px;
+            }
+        }
