@@ -1212,6 +1212,41 @@
             color: #fff;
         }
 
+        .project-item {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: clamp(28px, 3.5vw, 44px);
+            transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            will-change: transform;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--crimson-bright), transparent);
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-item:hover {
+            border-color: rgba(220, 38, 38, 0.45);
+            background: var(--bg-card-hover);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 30px rgba(220, 38, 38, 0.12);
+        }
+
+        .project-item:hover::before {
+            opacity: 1;
+        }
+
         .proj-desc {
             font-size: 1.05rem;
             color: var(--text-secondary);
@@ -1248,27 +1283,35 @@
 
         .proj-links {
             display: flex;
-            gap: 20px;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
         .proj-link {
             font-family: var(--font-display);
-            font-size: 0.95rem;
+            font-size: 0.86rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
             color: #fff;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            transition: color 0.2s ease;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.35);
+            border-radius: 999px;
+            transition: all 0.25s ease;
             will-change: transform;
         }
 
         .proj-link:hover {
-            color: var(--crimson-bright);
+            background: var(--crimson);
+            border-color: var(--crimson-bright);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.45);
+            transform: translateY(-2px);
         }
 
         /* ═══════════════════════════════════════
@@ -2982,302 +3025,239 @@
             <div class="projects-stack">
 
                 <!-- Project 1: CareerPath -->
-                <div class="card">
-                    <div class="card project-item" data-category="ai fullstack">
-                        <div class="proj-grid">
-                            <div class="proj-main">
-                                <div class="proj-top">
-                                    <span class="proj-num">PROJECT 01</span>
-                                    <span class="proj-cat">AI Platform · Full-Stack</span>
-                                </div>
-                                <h3 class="proj-title">CareerPath — AI-Powered Career Mentorship Platform</h3>
-                                <p class="proj-desc">
-                                    Built an AI-powered career platform that analyzes user profiles, identifies skill
-                                    gaps,
-                                    and generates personalized learning roadmaps using Large Language Models (LLMs).
-                                    Features resume analysis, progress tracking, conversational assistance, and learning
-                                    resource recommendations using MongoDB and web search APIs.
-                                </p>
-                                <div class="proj-links">
-                                    <a href="https://github.com/Joy1509/CarrerPath" target="_blank"
-                                        rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
-                                    <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
-                                </div>
+                <div class="card project-item" data-category="ai fullstack">
+                    <div class="proj-grid">
+                        <div class="proj-main">
+                            <div class="proj-top">
+                                <span class="proj-num">PROJECT 01</span>
+                                <span class="proj-cat">AI Platform · Full-Stack</span>
                             </div>
+                            <h3 class="proj-title">CareerPath — AI-Powered Career Mentorship Platform</h3>
+                            <p class="proj-desc">
+                                Built an AI-powered career platform that analyzes user profiles, identifies skill gaps,
+                                and generates personalized learning roadmaps using Large Language Models (LLMs).
+                                Features resume analysis, progress tracking, conversational assistance, and learning
+                                resource recommendations using MongoDB and web search APIs.
+                            </p>
+                            <div class="proj-links">
+                                <a href="https://github.com/Joy1509/CarrerPath" target="_blank"
+                                    rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
+                                <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
+                            </div>
+                        </div>
 
-                            <div class="proj-side">
-                                <div class="proj-highlight">
-                                    <h4>Key Architectural Highlights</h4>
-                                    <p>
-                                        • Developed scalable REST APIs with Python & FastAPI for secure data management,
-                                        persistent chat history, and user progress tracking.<br>
-                                        • Designed a responsive React.js frontend with OAuth authentication and
-                                        interactive
-                                        globe visualization.<br>
-                                        • Implemented contextual AI memory, automated task execution, and dual-model
-                                        inference for personalized career guidance.<br>
-                                        • Integrated resume analysis, progress tracking, conversational assistance, and
-                                        resource recommendations with MongoDB.
-                                    </p>
-                                </div>
-                                <div class="tags">
-                                    <span class="tag">React.js</span>
-                                    <span class="tag">FastAPI</span>
-                                    <span class="tag">Python</span>
-                                    <span class="tag">OpenAI API</span>
-                                    <span class="tag">Express.js</span>
-                                    <span class="tag">MongoDB</span>
-                                    <span class="tag">Tailwind CSS</span>
-                                    <span class="tag">OAuth</span>
-                                    <span class="tag">LLM Inference</span>
-                                </div>
+                        <div class="proj-side">
+                            <div class="proj-highlight">
+                                <h4>Key Architectural Highlights</h4>
+                                <p>
+                                    • Developed scalable REST APIs with Python & FastAPI for secure data management, persistent chat history, and user progress tracking.<br>
+                                    • Designed a responsive React.js frontend with OAuth authentication and interactive globe visualization.<br>
+                                    • Implemented contextual AI memory, automated task execution, and dual-model inference for personalized career guidance.<br>
+                                    • Integrated resume analysis, progress tracking, conversational assistance, and resource recommendations with MongoDB.
+                                </p>
+                            </div>
+                            <div class="tags">
+                                <span class="tag">React.js</span>
+                                <span class="tag">FastAPI</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">OpenAI API</span>
+                                <span class="tag">Express.js</span>
+                                <span class="tag">MongoDB</span>
+                                <span class="tag">Tailwind CSS</span>
+                                <span class="tag">OAuth</span>
+                                <span class="tag">LLM Inference</span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Project 2: CallFlow -->
-                    <div class="card">
-                        <div class="card project-item" data-category="fullstack">
-                            <div class="proj-grid">
-                                <div class="proj-main">
-                                    <div class="proj-top">
-                                        <span class="proj-num">PROJECT 02</span>
-                                        <span class="proj-cat">Enterprise CRM & Real-Time</span>
-                                    </div>
-                                    <h3 class="proj-title">CallFlow — Enterprise CRM & Business Management Platform</h3>
-                                    <p class="proj-desc">
-                                        Engineered a full-stack CRM platform to streamline customer, service, sales, and
-                                        order
-                                        lifecycle management through automated business workflows, multi-channel
-                                        communication
-                                        integrations, and role-based operational dashboards.
-                                    </p>
-                                    <div class="proj-links">
-                                        <a href="https://github.com/Joy1509/Callflow" target="_blank"
-                                            rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
-                                        <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
-                                    </div>
-                                </div>
-
-                                <div class="proj-side">
-                                    <div class="proj-highlight">
-                                        <h4>Key Architectural Highlights</h4>
-                                        <p>
-                                            • Architected secure REST APIs with JWT authentication, RBAC, Prisma ORM,
-                                            PostgreSQL, bcrypt encryption, OTP verification, and audit logging.<br>
-                                            • Integrated Socket.IO, WhatsApp, phone, email, and Google Maps APIs to
-                                            enable
-                                            real-time communication, location-aware services, and customer
-                                            engagement.<br>
-                                            • Optimized application performance using connection pooling, efficient
-                                            relational
-                                            schema design, query optimization, caching, and real-time WebSocket
-                                            synchronization.<br>
-                                            • Developed role-based dashboards with live analytics, Excel/PDF export,
-                                            automated
-                                            notifications, and business reporting.
-                                        </p>
-                                    </div>
-                                    <div class="tags">
-                                        <span class="tag">React</span>
-                                        <span class="tag">TypeScript</span>
-                                        <span class="tag">Node.js</span>
-                                        <span class="tag">PostgreSQL</span>
-                                        <span class="tag">Prisma ORM</span>
-                                        <span class="tag">Socket.IO</span>
-                                        <span class="tag">REST APIs</span>
-                                        <span class="tag">JWT / RBAC</span>
-                                        <span class="tag">WebSockets</span>
-                                    </div>
-                                </div>
+                <!-- Project 2: CallFlow -->
+                <div class="card project-item" data-category="fullstack">
+                    <div class="proj-grid">
+                        <div class="proj-main">
+                            <div class="proj-top">
+                                <span class="proj-num">PROJECT 02</span>
+                                <span class="proj-cat">Enterprise CRM & Real-Time</span>
+                            </div>
+                            <h3 class="proj-title">CallFlow — Enterprise CRM & Business Management Platform</h3>
+                            <p class="proj-desc">
+                                Engineered a full-stack CRM platform to streamline customer, service, sales, and order
+                                lifecycle management through automated business workflows, multi-channel communication
+                                integrations, and role-based operational dashboards.
+                            </p>
+                            <div class="proj-links">
+                                <a href="https://github.com/Joy1509/Callflow" target="_blank"
+                                    rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
+                                <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
                             </div>
                         </div>
 
-                        <!-- Project 3: DataGuard -->
-                        <div class="card">
-                            <div class="card project-item" data-category="cybersecurity fullstack">
-                                <div class="proj-grid">
-                                    <div class="proj-main">
-                                        <div class="proj-top">
-                                            <span class="proj-num">PROJECT 03</span>
-                                            <span class="proj-cat">Systems · Data Migration & Reliability</span>
-                                        </div>
-                                        <h3 class="proj-title">DataGuard — Automated Database Migration & Integrity
-                                            Verification Engine</h3>
-                                        <p class="proj-desc">
-                                            Engineered an automated data validation and migration verification platform
-                                            built specifically for Microsoft SQL Server to prove data correctness and
-                                            ensure zero-loss consistency across complex enterprise database migrations.
-                                            <br><br>
-                                            Executes user-defined rule suites comparing source and target databases,
-                                            captures granular pass/fail metrics with isolated bad-row diagnostics, and
-                                            classifies discrepancies run-over-run (<em>New</em>, <em>Recurring</em>,
-                                            <em>Resolved</em>) for end-to-end auditability and defect resolution
-                                            tracking.
-                                        </p>
-                                        <div class="proj-links">
-                                            <a href="https://github.com/Joy1509/DataGuard" target="_blank"
-                                                rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
-                                            <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="proj-side">
-                                        <div class="proj-highlight">
-                                            <h4>Key Architectural Highlights</h4>
-                                            <p>
-                                                • Designed automated schema & row-level reconciliation engines executing
-                                                cross-database assertion rules on Microsoft SQL Server.<br>
-                                                • Built intelligent run-over-run diff classification engine categorizing
-                                                data anomalies into New, Recurring, and Resolved defect states.<br>
-                                                • Implemented high-throughput batch query processing with parameterized
-                                                SQL execution and detailed discrepancy logging.<br>
-                                                • Generated comprehensive migration compliance audits with
-                                                failure-drilldown metrics for database administrators and data teams.
-                                            </p>
-                                        </div>
-                                        <div class="tags">
-                                            <span class="tag">C#</span>
-                                            <span class="tag">.NET</span>
-                                            <span class="tag">Microsoft SQL Server</span>
-                                            <span class="tag">T-SQL</span>
-                                            <span class="tag">Data Migration</span>
-                                            <span class="tag">ETL Validation</span>
-                                            <span class="tag">Database Internals</span>
-                                            <span class="tag">Defect Tracking</span>
-                                            <span class="tag">Automated Testing</span>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="proj-side">
+                            <div class="proj-highlight">
+                                <h4>Key Architectural Highlights</h4>
+                                <p>
+                                    • Architected secure REST APIs with JWT authentication, RBAC, Prisma ORM, PostgreSQL, bcrypt encryption, OTP verification, and audit logging.<br>
+                                    • Integrated Socket.IO, WhatsApp, phone, email, and Google Maps APIs to enable real-time communication, location-aware services, and customer engagement.<br>
+                                    • Optimized application performance using connection pooling, efficient relational schema design, query optimization, caching, and real-time WebSocket synchronization.<br>
+                                    • Developed role-based dashboards with live analytics, Excel/PDF export, automated notifications, and business reporting.
+                                </p>
                             </div>
+                            <div class="tags">
+                                <span class="tag">React</span>
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">PostgreSQL</span>
+                                <span class="tag">Prisma ORM</span>
+                                <span class="tag">Socket.IO</span>
+                                <span class="tag">REST APIs</span>
+                                <span class="tag">JWT / RBAC</span>
+                                <span class="tag">WebSockets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <!-- Project 4: Second Brain (Brainly) -->
-                            <div class="card">
-                                <div class="card project-item" data-category="ai fullstack">
-                                    <div class="proj-grid">
-                                        <div class="proj-main">
-                                            <div class="proj-top">
-                                                <span class="proj-num">PROJECT 04</span>
-                                                <span class="proj-cat">Full-Stack · Knowledge Hub</span>
-                                            </div>
-                                            <h3 class="proj-title">Second Brain (Brainly) — Digital Knowledge Hub &
-                                                Smart Content Platform</h3>
-                                            <p class="proj-desc">
-                                                Architected and built a personal knowledge management system designed to
-                                                organize, store, and instantly retrieve notes, technical articles,
-                                                bookmarked tweets, and media links in a single unified workspace.
-                                                <br><br>
-                                                Features secure JWT-based user authentication, dynamic categorization by
-                                                content type, shareable public knowledge hubs via cryptographically
-                                                hashed links, and fast full-text filtering over persistent cloud
-                                                storage.
-                                            </p>
-                                            <div class="proj-links">
-                                                <a href="https://github.com/Joy1509/BRAINLY_ADV" target="_blank"
-                                                    rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
-                                                <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
-                                            </div>
-                                        </div>
+                <!-- Project 3: DataGuard -->
+                <div class="card project-item" data-category="cybersecurity fullstack">
+                    <div class="proj-grid">
+                        <div class="proj-main">
+                            <div class="proj-top">
+                                <span class="proj-num">PROJECT 03</span>
+                                <span class="proj-cat">Systems · Data Migration & Reliability</span>
+                            </div>
+                            <h3 class="proj-title">DataGuard — Automated Database Migration & Integrity Verification Engine</h3>
+                            <p class="proj-desc">
+                                Engineered an automated data validation and migration verification platform built specifically for Microsoft SQL Server to prove data correctness and ensure zero-loss consistency across complex enterprise database migrations.
+                                <br><br>
+                                Executes user-defined rule suites comparing source and target databases, captures granular pass/fail metrics with isolated bad-row diagnostics, and classifies discrepancies run-over-run (<em>New</em>, <em>Recurring</em>, <em>Resolved</em>) for end-to-end auditability and defect resolution tracking.
+                            </p>
+                            <div class="proj-links">
+                                <a href="https://github.com/Joy1509/DataGuard" target="_blank"
+                                    rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
+                                <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
+                            </div>
+                        </div>
 
-                                        <div class="proj-side">
-                                            <div class="proj-highlight">
-                                                <h4>Key Architectural Highlights</h4>
-                                                <p>
-                                                    • Built a responsive, fully-typed single-page application using
-                                                    React, TypeScript, and reusable component systems with Tailwind
-                                                    CSS.<br>
-                                                    • Developed robust RESTful backend microservices with Node.js and
-                                                    Express, implementing JWT auth and bcrypt password hashing.<br>
-                                                    • Designed optimized MongoDB schemas with indexing for fast
-                                                    hierarchical tag querying, content filtering, and document
-                                                    association.<br>
-                                                    • Created custom embed parsers for rich previewing of YouTube
-                                                    videos, Twitter/X posts, and web documents with link sharing tokens.
-                                                </p>
-                                            </div>
-                                            <div class="tags">
-                                                <span class="tag">TypeScript</span>
-                                                <span class="tag">React.js</span>
-                                                <span class="tag">Node.js</span>
-                                                <span class="tag">Express.js</span>
-                                                <span class="tag">MongoDB</span>
-                                                <span class="tag">Mongoose</span>
-                                                <span class="tag">Tailwind CSS</span>
-                                                <span class="tag">JWT Auth</span>
-                                                <span class="tag">REST APIs</span>
-                                                <span class="tag">Full-Text Search</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="proj-side">
+                            <div class="proj-highlight">
+                                <h4>Key Architectural Highlights</h4>
+                                <p>
+                                    • Designed automated schema & row-level reconciliation engines executing cross-database assertion rules on Microsoft SQL Server.<br>
+                                    • Built intelligent run-over-run diff classification engine categorizing data anomalies into New, Recurring, and Resolved defect states.<br>
+                                    • Implemented high-throughput batch query processing with parameterized SQL execution and detailed discrepancy logging.<br>
+                                    • Generated comprehensive migration compliance audits with failure-drilldown metrics for database administrators and data teams.
+                                </p>
+                            </div>
+                            <div class="tags">
+                                <span class="tag">C#</span>
+                                <span class="tag">.NET</span>
+                                <span class="tag">Microsoft SQL Server</span>
+                                <span class="tag">T-SQL</span>
+                                <span class="tag">Data Migration</span>
+                                <span class="tag">ETL Validation</span>
+                                <span class="tag">Database Internals</span>
+                                <span class="tag">Defect Tracking</span>
+                                <span class="tag">Automated Testing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                <!-- Project 5: Smart Parking Management System -->
-                                <div class="card">
-                                    <div class="card project-item" data-category="iot ai">
-                                        <div class="proj-grid">
-                                            <div class="proj-main">
-                                                <div class="proj-top">
-                                                    <span class="proj-num">PROJECT 05</span>
-                                                    <span class="proj-cat">AI · Computer Vision · IoT</span>
-                                                </div>
-                                                <h3 class="proj-title">Smart Parking Management System Using AI & IoT
-                                                </h3>
-                                                <p class="proj-desc">
-                                                    Engineered an intelligent, automated parking management platform
-                                                    integrating Artificial Intelligence, Computer Vision, and IoT
-                                                    hardware to automate vehicle access, verify license plates, and
-                                                    optimize slot allocation in real time.
-                                                    <br><br>
-                                                    Employs a custom-trained YOLO model for vehicle and license plate
-                                                    detection combined with EasyOCR for automatic number plate
-                                                    recognition (ANPR). Integrates an Arduino/ESP32 microcontroller
-                                                    subsystem controlling servo-driven entrance gates, IR presence
-                                                    triggers, buzzer proximity alerts, and ultrasonic parking slot
-                                                    monitoring sensors synchronized via bidirectional serial
-                                                    communication.
-                                                </p>
-                                                <div class="proj-links">
-                                                    <a href="https://github.com/Joy1509" target="_blank"
-                                                        rel="noopener noreferrer" class="proj-link">GitHub Profile ↗</a>
-                                                    <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
-                                                </div>
-                                            </div>
+                <!-- Project 4: Second Brain (Brainly) -->
+                <div class="card project-item" data-category="ai fullstack">
+                    <div class="proj-grid">
+                        <div class="proj-main">
+                            <div class="proj-top">
+                                <span class="proj-num">PROJECT 04</span>
+                                <span class="proj-cat">Full-Stack · Knowledge Hub</span>
+                            </div>
+                            <h3 class="proj-title">Second Brain (Brainly) — Digital Knowledge Hub & Smart Content Platform</h3>
+                            <p class="proj-desc">
+                                Architected and built a personal knowledge management system designed to organize, store, and instantly retrieve notes, technical articles, bookmarked tweets, and media links in a single unified workspace.
+                                <br><br>
+                                Features secure JWT-based user authentication, dynamic categorization by content type, shareable public knowledge hubs via cryptographically hashed links, and fast full-text filtering over persistent cloud storage.
+                            </p>
+                            <div class="proj-links">
+                                <a href="https://github.com/Joy1509/BRAINLY_ADV" target="_blank"
+                                    rel="noopener noreferrer" class="proj-link">GitHub Repository ↗</a>
+                                <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
+                            </div>
+                        </div>
 
-                                            <div class="proj-side">
-                                                <div class="proj-highlight">
-                                                    <h4>Key Architectural Highlights</h4>
-                                                    <p>
-                                                        • Deployed real-time Computer Vision pipeline with custom YOLO &
-                                                        EasyOCR for instant plate recognition and authorized vehicle
-                                                        access control.<br>
-                                                        • Programmed Arduino/ESP32 embedded firmware in C/C++ driving
-                                                        servo gate actuation, IR entrance triggers, buzzer alerts, and
-                                                        ultrasonic slot detection arrays.<br>
-                                                        • Developed an interactive Python Tkinter real-time dashboard
-                                                        displaying live slot occupancy, vehicle recognition telemetry,
-                                                        and distance metrics.<br>
-                                                        • Built a robust serial communication protocol between the host
-                                                        computer and microcontroller for automated gate operations and
-                                                        synchronized parking state.
-                                                    </p>
-                                                </div>
-                                                <div class="tags">
-                                                    <span class="tag">Python</span>
-                                                    <span class="tag">YOLO (Ultralytics)</span>
-                                                    <span class="tag">Computer Vision</span>
-                                                    <span class="tag">OpenCV</span>
-                                                    <span class="tag">EasyOCR</span>
-                                                    <span class="tag">Arduino / ESP32</span>
-                                                    <span class="tag">C / C++</span>
-                                                    <span class="tag">IoT & Sensors</span>
-                                                    <span class="tag">Tkinter Dashboard</span>
-                                                    <span class="tag">Serial Protocol</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="proj-side">
+                            <div class="proj-highlight">
+                                <h4>Key Architectural Highlights</h4>
+                                <p>
+                                    • Built a responsive, fully-typed single-page application using React, TypeScript, and reusable component systems with Tailwind CSS.<br>
+                                    • Developed robust RESTful backend microservices with Node.js and Express, implementing JWT auth and bcrypt password hashing.<br>
+                                    • Designed optimized MongoDB schemas with indexing for fast hierarchical tag querying, content filtering, and document association.<br>
+                                    • Created custom embed parsers for rich previewing of YouTube videos, Twitter/X posts, and web documents with link sharing tokens.
+                                </p>
+                            </div>
+                            <div class="tags">
+                                <span class="tag">TypeScript</span>
+                                <span class="tag">React.js</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">Express.js</span>
+                                <span class="tag">MongoDB</span>
+                                <span class="tag">Mongoose</span>
+                                <span class="tag">Tailwind CSS</span>
+                                <span class="tag">JWT Auth</span>
+                                <span class="tag">REST APIs</span>
+                                <span class="tag">Full-Text Search</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                </div>
+                <!-- Project 5: Smart Parking Management System -->
+                <div class="card project-item" data-category="iot ai">
+                    <div class="proj-grid">
+                        <div class="proj-main">
+                            <div class="proj-top">
+                                <span class="proj-num">PROJECT 05</span>
+                                <span class="proj-cat">AI · Computer Vision · IoT</span>
+                            </div>
+                            <h3 class="proj-title">Smart Parking Management System Using AI & IoT</h3>
+                            <p class="proj-desc">
+                                Engineered an intelligent, automated parking management platform integrating Artificial Intelligence, Computer Vision, and IoT hardware to automate vehicle access, verify license plates, and optimize slot allocation in real time.
+                                <br><br>
+                                Employs a custom-trained YOLO model for vehicle and license plate detection combined with EasyOCR for automatic number plate recognition (ANPR). Integrates an Arduino/ESP32 microcontroller subsystem controlling servo-driven entrance gates, IR presence triggers, buzzer proximity alerts, and ultrasonic parking slot monitoring sensors synchronized via bidirectional serial communication.
+                            </p>
+                            <div class="proj-links">
+                                <a href="https://github.com/Joy1509" target="_blank"
+                                    rel="noopener noreferrer" class="proj-link">GitHub Profile ↗</a>
+                                <a href="#contact" class="proj-link">Connect to View Demo ↗</a>
+                            </div>
+                        </div>
+
+                        <div class="proj-side">
+                            <div class="proj-highlight">
+                                <h4>Key Architectural Highlights</h4>
+                                <p>
+                                    • Deployed real-time Computer Vision pipeline with custom YOLO & EasyOCR for instant plate recognition and authorized vehicle access control.<br>
+                                    • Programmed Arduino/ESP32 embedded firmware in C/C++ driving servo gate actuation, IR entrance triggers, buzzer alerts, and ultrasonic slot detection arrays.<br>
+                                    • Developed an interactive Python Tkinter real-time dashboard displaying live slot occupancy, vehicle recognition telemetry, and distance metrics.<br>
+                                    • Built a robust serial communication protocol between the host computer and microcontroller for automated gate operations and synchronized parking state.
+                                </p>
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">YOLO (Ultralytics)</span>
+                                <span class="tag">Computer Vision</span>
+                                <span class="tag">OpenCV</span>
+                                <span class="tag">EasyOCR</span>
+                                <span class="tag">Arduino / ESP32</span>
+                                <span class="tag">C / C++</span>
+                                <span class="tag">IoT & Sensors</span>
+                                <span class="tag">Tkinter Dashboard</span>
+                                <span class="tag">Serial Protocol</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <!-- ═══ EDUCATION ═══ -->
@@ -4230,29 +4210,36 @@
                         const matches = filter === 'all' || cat.split(' ').includes(filter);
 
                         if (matches) {
-                            gsap.to(card, {
-                                opacity: 1,
-                                scale: 1,
-                                y: 0,
-                                duration: 0.35,
-                                ease: 'power2.out',
-                                onStart: () => { card.style.display = 'block'; }
-                            });
+                            card.style.display = 'block';
+                            gsap.fromTo(card,
+                                { opacity: 0, y: 15, scale: 0.98 },
+                                {
+                                    opacity: 1,
+                                    y: 0,
+                                    scale: 1,
+                                    duration: 0.36,
+                                    ease: 'power2.out',
+                                    clearProps: 'transform'
+                                }
+                            );
                         } else {
                             gsap.to(card, {
                                 opacity: 0,
-                                scale: 0.95,
                                 y: -10,
-                                duration: 0.25,
+                                scale: 0.98,
+                                duration: 0.22,
                                 ease: 'power2.in',
-                                onComplete: () => { card.style.display = 'none'; }
+                                onComplete: () => {
+                                    card.style.display = 'none';
+                                }
                             });
                         }
                     });
 
                     setTimeout(() => {
                         if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-                    }, 360);
+                        if (lenis && typeof lenis.resize === 'function') lenis.resize();
+                    }, 380);
                 });
             });
         }
