@@ -57,6 +57,13 @@ npx vercel
 ```
 Or simply import your repository into the [Vercel Dashboard](https://vercel.com/new).
 
+### Deploy to Render
+1. Push this repository to GitHub.
+2. In the [Render Dashboard](https://dashboard.render.com), click **New +** $\rightarrow$ **Static Site**.
+3. Connect your repository.
+4. Set **Publish Directory** to `.` and leave **Build Command** blank.
+5. Click **Create Static Site**.
+
 ### Deploy to Netlify
 - Drag and drop this folder into [Netlify Drop](https://app.netlify.com/drop), or connect your repository.
 - **Publish directory**: `.` (root)

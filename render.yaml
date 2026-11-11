@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: joy-patel-portfolio
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    headers:
+      - path: /Char/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /music/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /vendor/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+
